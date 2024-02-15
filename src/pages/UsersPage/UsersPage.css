@@ -1,0 +1,9 @@
+.users-page__container {
+  background: #f7fcfe;
+  height    : 100%;
+}
+
+.users-page__table {
+  width : 748px;
+  margin: 48px auto 0px auto;
+}
