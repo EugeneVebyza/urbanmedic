@@ -106,47 +106,6 @@ export default function UsersTable() {
           <UserRow />
           <UserRow />
           <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
         </tbody>
 
       </table>

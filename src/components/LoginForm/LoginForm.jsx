@@ -1,7 +1,13 @@
 import { useForm } from 'react-hook-form'
 import './LoginForm.css'
+import { useDispatch } from 'react-redux';
+import { getUsers } from '../../store/reducers/rootSlice';
+
 
 function LoginForm() {
+
+  const dispatch = useDispatch();
+
   const {
     register,
     formState: {
@@ -11,7 +17,7 @@ function LoginForm() {
   } = useForm()
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data))
+    dispatch(getUsers(data.seed));
   }
   //По доке сид - любая последовательность символов, валидация только по required
 
