@@ -1,11 +1,11 @@
-import { useForm } from 'react-hook-form'
-import './LoginForm.css'
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getUsers } from '../../store/reducers/rootSlice';
-
+import { setSeed, getUsers } from '../../store/reducers/rootSlice';
+import './LoginForm.css';
 
 function LoginForm() {
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {
@@ -17,9 +17,11 @@ function LoginForm() {
   } = useForm()
 
   const onSubmit = (data) => {
+    dispatch(setSeed(data.seed));
     dispatch(getUsers(data.seed));
+    navigate('/users', { replace: true });
+    console.log('123123')
   }
-  //По доке сид - любая последовательность символов, валидация только по required
 
   return (
     <div className="login__container">

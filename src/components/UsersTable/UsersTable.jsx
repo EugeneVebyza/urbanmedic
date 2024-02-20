@@ -1,7 +1,9 @@
 import "./UsersTable.css"
 import UserRow from "../UserRow/UserRow"
+import { useSelector } from 'react-redux'
 
 export default function UsersTable() {
+  const { users } = useSelector(state => state.root);
   return (
     <div className="users-table__container">
       <table className="users-table">
@@ -16,96 +18,13 @@ export default function UsersTable() {
           </tr>
         </thead>
         <tbody>
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
-          <UserRow />
+          {
+
+            users.map((user, index) => (
+              <UserRow user={{ ...user, id: index + 1 }} key={index + 1} />
+            ))
+          }
+
         </tbody>
 
       </table>
