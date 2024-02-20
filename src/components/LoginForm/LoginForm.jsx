@@ -20,7 +20,6 @@ function LoginForm() {
     dispatch(setSeed(data.seed));
     dispatch(getUsers(data.seed));
     navigate('/users', { replace: true });
-    console.log('123123')
   }
 
   return (

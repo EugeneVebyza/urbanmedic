@@ -7,16 +7,18 @@ import { Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function UsersPage() {
-  const [showPopup, setShowPopup] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+
+
 
   const { seed } = useSelector(state => state.root);
 
   return seed ? (
     <>
-      <Popup isOpen={showPopup} onClose={() => setShowPopup(false)} />
+      <Popup active={modalActive} setActive={setModalActive} />
 
       <div className='users-page__container'>
-        <Header setShowPopup={() => setShowPopup(true)} />
+        <Header setActive={setModalActive} />
         <div className="users-page__table">
           <UsersTable />
         </div>

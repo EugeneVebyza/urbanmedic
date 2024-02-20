@@ -1,24 +1,20 @@
 import './PopUp.css';
 import PropTypes from 'prop-types';
+import UserForm from '../UserForm/UserForm';
 
-function PopUp({ isOpen, onClose }) {
-  if (!isOpen) {
-    return null;
-  }
-
+function PopUp({ active, setActive }) {
   return (
-    <div className="popup">
-      <div className="popup-inner">
-        <h2>Заголовок попапа</h2>
-        <p>Содержимое попапа</p>
-        <button onClick={onClose}>Закрыть попап</button>
+    <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
+      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+        <img className="modal__cross" onClick={() => setActive(false)} src="/popup__cross.svg" alt="" />
+        <UserForm />
       </div>
     </div>
   );
 }
 PopUp.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  setActive: PropTypes.func.isRequired,
 };
 
 export default PopUp;
