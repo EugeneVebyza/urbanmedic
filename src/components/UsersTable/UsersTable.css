@@ -1,41 +1,56 @@
 .users-table__container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width           : 100%;
+    display         : flex;
+    justify-content : center;
+    max-height      : calc(100vh - 296px);
+    overflow-y      : auto;
+    background-color: #f2f2f7;
 }
 
 .users-table {
-    background-color: #f2f2f7;
-    width: 100%;
-    font-size: 12px;
-    border-collapse: collapse;
-}
-
-.users-table thead th {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 133%;
-    text-align: left;
-    padding: 10px 12px;
-    height: 40px;
-}
-
-.users-table tbody {
-    max-height: calc(100vh - 301px);
-    width: 100%;
-    display: block;
-    overflow-y: auto;
+    width                : 100%;
+    font-size            : 12px;
+    border-collapse      : collapse;
+    display              : inline-grid;
+    grid-gap             : 1px;
+    border               : 1px solid #f2f2f7;
+    border-left          : none;
+    grid-template-columns: 50px minmax(120px, 1.67fr) minmax(120px, 1.67fr) minmax(120px, 1.67fr) minmax(150px, 3.33fr) 128px;
 }
 
 .users-table thead,
-.users-table tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+.users-table tbody,
+.users-table tr {
+    display: contents;
+}
+
+.users-table thead th {
+    font-weight     : 500;
+    font-size       : 12px;
+    line-height     : 133%;
+    text-align      : left;
+    padding         : 10px 12px;
+    height          : 40px;
+    background-color: #F2F2F7;
+}
+
+.users-table td,
+.users-table th {
+    overflow     : hidden;
+    text-overflow: ellipsis;
+    white-space  : nowrap;
+}
+
+.users-table td {
+    height: 36px;
+}
+
+.users-table th {
+    position: sticky;
+    top     : 0;
 }
 
 .users-table tbody tr {
-    table-layout: fixed;
     width: calc(100% - 1px);
 }
 
@@ -43,25 +58,19 @@
     width: calc(100% - 6px)
 }
 
-.users-table thead th:first-child {
-    width: 51px;
-}
-
-.users-table thead th:last-child {
-    width: 123px;
-}
-
-.users-table thead th:nth-child(4) {
-    width: 120px;
-}
-
-.users-table tbody::-webkit-scrollbar {
-    width: 4px;
+.users-table__container::-webkit-scrollbar {
+    width           : 4px;
+    height          : 6px;
     background-color: #f2f2f7;
 }
 
-.users-table tbody::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #00a5ee 1.73%, #14d7d1 100%);
-    box-shadow: 2px 1px 17px 0 rgba(0, 0, 0, 0.05);
+.users-table__container::-webkit-scrollbar-button:start {
+    display: block;
+    height : 22px;
+}
+
+.users-table__container::-webkit-scrollbar-thumb {
+    background   : linear-gradient(45deg, #00a5ee 1.73%, #14d7d1 100%);
+    box-shadow   : 2px 1px 17px 0 rgba(0, 0, 0, 0.05);
     border-radius: 8px;
 }

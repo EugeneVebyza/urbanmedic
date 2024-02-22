@@ -11,11 +11,11 @@ const UsersTable = () => {
         <thead>
           <tr>
             <th>№</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Gender</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Пол</th>
+            <th>Почта</th>
+            <th>Действие</th>
           </tr>
         </thead>
         <tbody>
