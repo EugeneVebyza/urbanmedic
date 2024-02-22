@@ -10,11 +10,9 @@ function LoginForm() {
 
   const {
     register,
-    formState: {
-      errors,
-    },
+    formState: { errors },
     handleSubmit,
-  } = useForm()
+  } = useForm();
 
   const onSubmit = (data) => {
     dispatch(setSeed(data.seed));
@@ -23,20 +21,25 @@ function LoginForm() {
   }
 
   return (
-    <div className="login__container">
-      <form className="login__form form" onSubmit={handleSubmit(onSubmit)}>
-        <p className='form__title'>Добро пожаловать</p>
-        <label className="form__label">
-          Seed
-          <input type="text" className="form__input-seed" {...register('seed', { required: true, minLength: 2 })} />
+    <div className="login-container">
+      <form className="login-form form" onSubmit={handleSubmit(onSubmit)}>
+        <p className='form-title'>Welcome</p>
+        <label className="form-label input-container">
+          <input
+            type="text"
+            placeholder=' '
+            className={`form-input form-input-seed ${errors.seed ? 'input-error' : ''}`}
+            {...register('seed', { required: true, minLength: 2 })}
+          />
+          <span className="input-placeholder">Seed</span>
         </label>
-        <div className="form__error">
-          {errors?.seed && <span>*Поле заполнено некорректно</span>}
+        <div className="form-error">
+          {errors?.seed && <span>*Field filled incorrectly</span>}
         </div>
-        <button type="submit" className='form__button'>Войти</button>
+        <button type="submit" className='form-button'>Login</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default LoginForm
+export default LoginForm;

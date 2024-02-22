@@ -1,34 +1,31 @@
-import "./UsersTable.css"
-import UserRow from "../UserRow/UserRow"
-import { useSelector } from 'react-redux'
+import "./UsersTable.css";
+import UserRow from "../UserRow/UserRow";
+import { useSelector } from 'react-redux';
 
-export default function UsersTable() {
+const UsersTable = () => {
   const { users } = useSelector(state => state.root);
+
   return (
     <div className="users-table__container">
       <table className="users-table">
         <thead>
           <tr>
             <th>№</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Пол</th>
-            <th>Почта</th>
-            <th>Действие</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {
-
-            users.map((user, index) => (
-              <UserRow user={{ ...user, id: index + 1 }} key={index + 1} />
-            ))
-          }
-
+          {users.map((user, index) => (
+            <UserRow user={{ ...user, id: index + 1 }} key={index + 1} />
+          ))}
         </tbody>
-
       </table>
     </div>
+  );
+};
 
-  )
-}
+export default UsersTable;

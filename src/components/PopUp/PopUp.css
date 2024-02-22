@@ -8,20 +8,30 @@
   display        : flex;
   align-items    : center;
   justify-content: center;
-  transform      : scale(0);
+  opacity        : 0;
+  visibility     : hidden;
+  transition     : opacity 0.3s ease, visibility 0.3s;
 }
 
 .modal.active {
-  transform: scale(1);
+  opacity   : 1;
+  visibility: visible;
 }
 
 .modal__content {
+  position     : absolute;
   border       : 1px solid rgb(242, 242, 247);
   border-radius: 16px;
   box-shadow   : 0px 20px 66px 0px rgba(0, 0, 0, 0.24);
   background   : rgb(255, 255, 255);
-  padding      : 24px;
+  padding      : 24px 24px 32px 24px;
   position     : relative;
+  transform    : translateY(100%);
+  transition   : transform 0.3s ease;
+}
+
+.modal.active .modal__content {
+  transform: translateY(0);
 }
 
 .modal__cross {
@@ -30,4 +40,5 @@
   height  : 12px;
   right   : 30px;
   top     : 17px;
+  cursor  : pointer;
 }

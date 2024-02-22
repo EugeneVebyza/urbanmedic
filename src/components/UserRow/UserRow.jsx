@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "./UserRow.css"
+import "./UserRow.css";
 
 function UserRow({ user }) {
   return (
@@ -27,4 +27,4 @@ UserRow.propTypes = {
   }).isRequired,
 };
 
-export default UserRow
+export default UserRow;

@@ -1,25 +1,25 @@
 @font-face {
     font-display: swap;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    src: url('assets/fonts/roboto-v30-cyrillic_latin-regular.woff2') format('woff2');
+    font-family : 'Roboto';
+    font-style  : normal;
+    font-weight : 400;
+    src         : url('assets/fonts/roboto-v30-cyrillic_latin-regular.woff2') format('woff2');
 }
 
 @font-face {
     font-display: swap;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    src: url('assets/fonts/roboto-v30-cyrillic_latin-500.woff2') format('woff2');
+    font-family : 'Roboto';
+    font-style  : normal;
+    font-weight : 500;
+    src         : url('assets/fonts/roboto-v30-cyrillic_latin-500.woff2') format('woff2');
 }
 
 @font-face {
     font-display: swap;
-    font-family: 'Roboto';
-    font-style: italic;
-    font-weight: 500;
-    src: url('assets/fonts/roboto-v30-cyrillic_latin-500italic.woff2') format('woff2');
+    font-family : 'Roboto';
+    font-style  : italic;
+    font-weight : 500;
+    src         : url('assets/fonts/roboto-v30-cyrillic_latin-500italic.woff2') format('woff2');
 }
 
 p,
@@ -31,7 +31,7 @@ th,
 td {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size  : 16px;
 }
 
 body,
@@ -42,6 +42,95 @@ body,
 
 div,
 td,
-th {
+th,
+input {
     box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+}
+
+.input__container {
+    position: relative;
+    width   : 100%;
+}
+
+.input__container input {
+    outline: 0;
+}
+
+.input__placeholder {
+    font-size       : 16px;
+    font-weight     : 400;
+    line-height     : 22px;
+    padding         : 5px 10px;
+    color           : rgb(142, 142, 147);
+    pointer-events  : none;
+    position        : absolute;
+    transition      : all 200ms;
+    top             : 10px;
+    left            : -10px;
+    background-color: #FFF;
+}
+
+.input__container input:focus+span,
+.input__container input:not(:placeholder-shown)+span {
+    top           : -10px;
+    left          : -10px;
+    font-size     : 13px;
+    letter-spacing: 0.4px;
+    padding       : 0px 10px;
+}
+
+.form__title {
+    font-weight: 500;
+    font-size  : 28px;
+    margin     : 0;
+    text-align : center;
+    font-family: "Roboto", sans-serif;
+}
+
+.form__label {
+    display       : flex;
+    flex-direction: column;
+    margin-top    : 16px;
+    font-size     : 13px;
+    color         : #aeaeb2;
+}
+
+.form__input {
+    background   : transparent;
+    border       : none;
+    border-bottom: 1px solid #E5E5EA;
+    height       : 50px;
+}
+
+.form__button {
+    margin-top    : 16px;
+    border-radius : 8px;
+    padding       : 11px 20px;
+    border        : none;
+    background    : linear-gradient(122deg, #00eaf9 0%, #00bdf9 100%);
+    font-weight   : 500;
+    font-size     : 16px;
+    line-height   : 137%;
+    letter-spacing: 0.01em;
+    color         : #fff;
+}
+
+input.input-error {
+    border-bottom: 1px solid rgb(255, 0, 0);
+}
+
+.form__error {
+    margin-top: 13px;
+}
+
+.form__error span {
+    color         : rgb(255, 0, 0);
+    font-size     : 13px;
+    font-weight   : 400;
+    line-height   : 13px;
+    letter-spacing: 0.4px;
 }

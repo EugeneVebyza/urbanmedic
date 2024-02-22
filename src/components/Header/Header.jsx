@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { removeSeed } from '../../store/reducers/rootSlice';
 import PropTypes from 'prop-types';
-
-import "./Header.css"
+import "./Header.css";
 
 function Header({ setActive }) {
   const dispatch = useDispatch();
@@ -22,4 +21,4 @@ Header.propTypes = {
   setActive: PropTypes.func.isRequired,
 };
 
-export default Header
+export default Header;
