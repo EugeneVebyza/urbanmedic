@@ -1,3 +1,7 @@
+.user-form {
+  width: 495px;
+}
+
 .user-form .form__title {
   text-align: left;
   font-size : 20px;
@@ -8,19 +12,19 @@
 }
 
 .user-form .form__button {
-  width     : 552px;
-  margin-top: 33px;
+  width        : 100%;
+  /* margin-top: 33px; */
 }
 
 .user-form__checkbox {
   display        : flex;
   justify-content: center;
-  max-width      : 347px;
+  max-width      : 324px;
   margin         : 28px auto 0px auto;
   cursor         : pointer;
 }
 
-.user-form__gendre {
+.user-form__gender {
   display      : inline-block;
   height       : 40px;
   width        : 347px;
@@ -32,13 +36,13 @@
   transition   : background-color 0.3s cubic-bezier(0, 1, 0.5, 1);
 }
 
-.user-form__gendre:before {
+.user-form__gender:before {
   content       : attr(data-label-on);
   display       : inline-block;
   box-sizing    : border-box;
-  width         : 170px;
+  width         : 160px;
   position      : absolute;
-  top           : 4px;
+  top           : 3px;
   left          : 175px;
   text-align    : center;
   color         : rgba(255, 255, 255, 0.5);
@@ -49,11 +53,11 @@
   color         : rgb(142, 142, 147);
 }
 
-.user-form__gendre:after {
+.user-form__gender:after {
   content       : attr(data-label-off);
   display       : inline-block;
   box-sizing    : border-box;
-  width         : 170px;
+  width         : 146px;
   position      : absolute;
   top           : 3px;
   left          : 3px;
@@ -79,13 +83,29 @@
   opacity : 0;
 }
 
-.user-form__checkbox input[type="checkbox"]:checked+.user-form__gendre:before {
+.user-form__checkbox input[type="checkbox"]:checked+.user-form__gender:before {
   content: attr(data-label-off);
   left   : 0;
 }
 
-.user-form__checkbox input[type="checkbox"]:checked+.user-form__gendre:after {
+.user-form__checkbox input[type="checkbox"]:checked+.user-form__gender:after {
   content  : attr(data-label-on);
   color    : #000;
   transform: translate3d(172px, 0, 0);
+}
+
+.form__remove-button {
+  height          : 44px;
+  width           : 44px;
+  padding         : 10px;
+  /* margin       : 0px 12px; */
+  background      : rgb(242, 242, 247);
+  border-radius   : 8px;
+  border          : none;
+}
+
+.form__controls {
+  display    : flex;
+  align-items: flex-end;
+  gap        : 12px;
 }

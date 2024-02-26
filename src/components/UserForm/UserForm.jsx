@@ -1,12 +1,38 @@
 import "./UserForm.css";
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { addUser, removeUser, closeModal, updateUser } from '../../store/reducers/rootSlice';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
+function UserForm({ user }) {
+  const dispatch = useDispatch();
+  const { register, formState: { errors }, handleSubmit, setValue } = useForm();
 
-function UserForm() {
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  useEffect(() => {
+    if (user) {
+      setValue('firstname', user.firstname);
+      setValue('lastname', user.lastname);
+      setValue('email', user.email);
+      setValue('gender', user.gender == 'female' ? "checked" : "");
+    }
+  }, [setValue, user]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    if (!user) {
+      dispatch(addUser(data));
+    }
+    else {
+      dispatch(updateUser({ id: user.id, ...data }));
+    }
+    dispatch(closeModal());
+
+  };
+
+  const onRemove = (id) => {
+
+    dispatch(removeUser(id));
+    dispatch(closeModal());
   };
 
   return (
@@ -55,10 +81,23 @@ function UserForm() {
       <div className="form__error">
         {errors?.email && <span>*Поле заполнено некорректно</span>}
       </div>
-
-      <button type="submit" className='form__button'>Сохранить</button>
+      <div className="form__controls">
+        {user && <button type="button" className='form__remove-button' onClick={() => onRemove(user.id)}><img src="/bin.svg" alt="" /></button>}
+        <button type="submit" className='form__button'>Сохранить</button>
+      </div>
     </form>
   );
 }
+
+UserForm.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    email: PropTypes.string,
+    gender: PropTypes.string
+  })
+};
+
 
 export default UserForm;

@@ -61,22 +61,21 @@ button {
 }
 
 .input__placeholder {
-    font-size       : 16px;
-    font-weight     : 400;
-    line-height     : 22px;
-    padding         : 5px 10px;
-    color           : rgb(142, 142, 147);
-    pointer-events  : none;
-    position        : absolute;
-    transition      : all 200ms;
-    top             : 10px;
-    left            : -10px;
-    background-color: #FFF;
+    font-size     : 16px;
+    font-weight   : 400;
+    line-height   : 22px;
+    padding       : 5px 10px;
+    color         : rgb(142, 142, 147);
+    pointer-events: none;
+    position      : absolute;
+    transition    : all 200ms;
+    top           : 10px;
+    left          : -10px;
 }
 
 .input__container input:focus+span,
 .input__container input:not(:placeholder-shown)+span {
-    top           : -10px;
+    top           : -4px;
     left          : -10px;
     font-size     : 13px;
     letter-spacing: 0.4px;
@@ -92,18 +91,19 @@ button {
 }
 
 .form__label {
-    display       : flex;
-    flex-direction: column;
-    margin-top    : 16px;
-    font-size     : 13px;
-    color         : #aeaeb2;
+    display          : flex;
+    flex-direction   : column;
+    /* margin-top    : 16px; */
+    margin-top       : 3px;
+    font-size        : 13px;
+    color            : #aeaeb2;
 }
 
 .form__input {
     background   : transparent;
     border       : none;
     border-bottom: 1px solid #E5E5EA;
-    height       : 50px;
+    height       : 48px;
 }
 
 .form__button {

@@ -20,3 +20,21 @@
     color        : #fff;
     border       : none;
 }
+
+.user-row td {
+    padding         : 8.5px 12px;
+    font-size       : 12px;
+    line-height     : 133%;
+    background-color: white;
+}
+
+.user-row td:last-child {
+    display        : flex;
+    justify-content: center;
+}
+
+.user-row td .user__edit-disabled {
+    background    : rgb(229, 229, 229);
+    color         : rgb(168, 168, 168);
+    pointer-events: none;
+}

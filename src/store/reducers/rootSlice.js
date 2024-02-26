@@ -3,20 +3,28 @@ import axios from 'axios';
 
 export const getUsers = createAsyncThunk(
     'root/getUsers',
-    async(seed) => {
-        const response = await axios.get(`https://randomuser.me/api/?seed=${seed}`);
-
-        return response.data.results;
+    async(page, { getState }) => {
+        const seed = getState().root.seed;
+        const response = await axios.get(`https://randomuser.me/api/?seed=${seed}&page=${page}&results=17&nat=RS&inc=gender,name,email,id`);
+        return { page, users: response.data.results };
     }
 );
+
+const updateLocalStorage = (key, newItem) => {
+    const items = JSON.parse(localStorage.getItem(key)) || [];
+    items.push(newItem);
+    localStorage.setItem(key, JSON.stringify(items));
+};
 
 const rootSlice = createSlice({
     name: 'root',
     initialState: {
-        users: JSON.parse(localStorage.getItem('users')) || null,
+        users: JSON.parse(localStorage.getItem('users')) || [],
         status: null,
         error: null,
         seed: localStorage.getItem('seed') || null,
+        modalIsOpen: false,
+        modalData: null,
     },
     reducers: {
         setSeed: (state, action) => {
@@ -29,6 +37,61 @@ const rootSlice = createSlice({
             localStorage.removeItem('seed');
             localStorage.removeItem('users');
         },
+        openModal: (state, action) => {
+            state.modalIsOpen = true;
+            state.modalData = action.payload;
+        },
+        closeModal: (state) => {
+            state.modalIsOpen = false;
+            state.modalData = null;
+        },
+        addUser: (state, action) => {
+            const newUser = {
+                id: state.users.length.toString(),
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
+                gender: action.payload.gender ? 'female' : 'male',
+                email: action.payload.email
+            };
+            state.users = [newUser, ...state.users];
+            updateLocalStorage('users', newUser);
+
+
+        },
+        updateUser: (state, action) => {
+
+            const updatedUsers = state.users.map(user => {
+                if (user.id === action.payload.id) {
+                    return {
+                        ...user,
+                        gender: action.payload.gender ? 'female' : 'male'
+                    };
+                } else {
+                    return user;
+                }
+            });
+
+            const usersInLocalStorage = JSON.parse(localStorage.getItem('users')) || [];
+            const updatedUsersInLocalStorage = usersInLocalStorage.map(user => {
+                if (user.id === action.payload.id) {
+                    return {
+                        ...user,
+                        gender: action.payload.gender ? 'female' : 'male'
+                    };
+                } else {
+                    return user;
+                }
+            });
+            localStorage.setItem('users', JSON.stringify(updatedUsersInLocalStorage));
+
+            return {...state, users: updatedUsers };
+
+        },
+        removeUser: (state, action) => {
+            state.users = state.users.filter(user => user.id !== action.payload);
+            localStorage.setItem('users', JSON.stringify(state.users));
+
+        },
     },
     extraReducers: builder => {
         builder
@@ -38,19 +101,15 @@ const rootSlice = createSlice({
             })
             .addCase(getUsers.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-
-                const users = action.payload.map(user => ({
+                const users = action.payload.users.map(user => ({
                     id: user.id.value,
                     firstname: user.name.first,
                     lastname: user.name.last,
                     gender: user.gender,
                     email: user.email,
+                    fetched: true,
                 }));
-
-                state.users = users;
-                localStorage.setItem('users', JSON.stringify(users));
-
-
+                state.users.push(...users);
             })
             .addCase(getUsers.rejected, (state, action) => {
                 state.status = 'rejected';
@@ -60,6 +119,6 @@ const rootSlice = createSlice({
     },
 });
 
-export const { removeSeed, setSeed } = rootSlice.actions;
+export const { removeSeed, setSeed, openModal, closeModal, addUser, removeUser, updateUser } = rootSlice.actions;
 
 export default rootSlice.reducer;

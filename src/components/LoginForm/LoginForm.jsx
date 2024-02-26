@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setSeed, getUsers } from '../../store/reducers/rootSlice';
+import { setSeed } from '../../store/reducers/rootSlice';
 import './LoginForm.css';
 
 function LoginForm() {
@@ -16,27 +16,26 @@ function LoginForm() {
 
   const onSubmit = (data) => {
     dispatch(setSeed(data.seed));
-    dispatch(getUsers(data.seed));
     navigate('/users', { replace: true });
   }
 
   return (
-    <div className="login-container">
-      <form className="login-form form" onSubmit={handleSubmit(onSubmit)}>
-        <p className='form-title'>Welcome</p>
-        <label className="form-label input-container">
+    <div className="login__container">
+      <form className="login__form form" onSubmit={handleSubmit(onSubmit)}>
+        <p className='form__title'>Добро пожаловать</p>
+        <label className="form__label input__container">
           <input
             type="text"
             placeholder=' '
-            className={`form-input form-input-seed ${errors.seed ? 'input-error' : ''}`}
+            className={`form__input form__input__seed ${errors.seed ? 'input__error' : ''}`}
             {...register('seed', { required: true, minLength: 2 })}
           />
-          <span className="input-placeholder">Seed</span>
+          <span className="input__placeholder">Seed</span>
         </label>
-        <div className="form-error">
-          {errors?.seed && <span>*Field filled incorrectly</span>}
+        <div className="form__error">
+          {errors?.seed && <span>*Поле заполнено не корректно</span>}
         </div>
-        <button type="submit" className='form-button'>Login</button>
+        <button type="submit" className='form__button'>Войти</button>
       </form>
     </div>
   );
