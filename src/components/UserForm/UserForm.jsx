@@ -7,7 +7,9 @@ import PropTypes from 'prop-types';
 
 function UserForm({ user }) {
   const dispatch = useDispatch();
-  const { register, formState: { errors }, handleSubmit, setValue } = useForm();
+  const { register, formState: { errors, isValid }, handleSubmit, setValue, reset } = useForm({
+    mode: 'onBlur',
+  });
 
   useEffect(() => {
     if (user) {
@@ -26,6 +28,7 @@ function UserForm({ user }) {
       dispatch(updateUser({ id: user.id, ...data }));
     }
     dispatch(closeModal());
+    reset();
 
   };
 
@@ -48,7 +51,7 @@ function UserForm({ user }) {
           type="text"
           className={`form__input form__input-lastname ${errors.lastname ? 'input-error' : ''}`}
           placeholder=" "
-          {...register('lastname', { required: true, maxLength: 25, pattern: /^[А-Яа-я\-]+$/i })}
+          {...register('lastname', { required: true, maxLength: 25, pattern: /^[А-Яа-я-]+$/i })}
         />
         <span className="input__placeholder">Фамилия*</span>
       </label>
@@ -61,7 +64,7 @@ function UserForm({ user }) {
           type="text"
           className={`form__input form__input-firstname ${errors.firstname ? 'input-error' : ''}`}
           placeholder=" "
-          {...register('firstname', { required: true, maxLength: 25, pattern: /^[А-Яа-я\-]+$/i })}
+          {...register('firstname', { required: true, maxLength: 25, pattern: /^[А-Яа-я-]+$/i })}
         />
         <span className="input__placeholder">Имя*</span>
       </label>
@@ -83,7 +86,7 @@ function UserForm({ user }) {
       </div>
       <div className="form__controls">
         {user && <button type="button" className='form__remove-button' onClick={() => onRemove(user.id)}><img src="/bin.svg" alt="" /></button>}
-        <button type="submit" className='form__button'>Сохранить</button>
+        <button type="submit" className='form__button' disabled={!isValid}>Сохранить</button>
       </div>
     </form>
   );

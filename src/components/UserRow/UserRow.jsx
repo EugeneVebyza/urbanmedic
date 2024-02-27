@@ -7,7 +7,6 @@ import "./UserRow.css";
 function UserRow({ user, index, isLast }) {
 
   const dispatch = useDispatch();
-
   return (
     <tr className="user-row" id={isLast ? 'lastRow' : ''}>
       <td>{index}</td>
@@ -25,11 +24,12 @@ function UserRow({ user, index, isLast }) {
 
 UserRow.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     firstname: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     gender: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    fetched: PropTypes.bool,
   }).isRequired,
   index: PropTypes.number.isRequired,
   isLast: PropTypes.bool

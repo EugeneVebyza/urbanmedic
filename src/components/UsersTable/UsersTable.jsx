@@ -1,18 +1,18 @@
 import "./UsersTable.css";
 import UserRow from "../UserRow/UserRow";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers } from '../../store/reducers/rootSlice';
 
 const UsersTable = () => {
 
   const dispatch = useDispatch();
-  const { users, loading } = useSelector(state => state.root);
+  const { users } = useSelector(state => state.root);
   const [page, setPage] = useState(1);
   const containerRef = useRef();
   const [isFetching, setIsFetching] = useState(false);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const container = containerRef.current;
     if (
       container &&
@@ -21,7 +21,7 @@ const UsersTable = () => {
     ) {
       setIsFetching(true);
     }
-  };
+  }, [containerRef, isFetching]);
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
@@ -32,8 +32,8 @@ const UsersTable = () => {
 
 
   useEffect(() => {
-    dispatch(getUsers(page)); // выполняем запрос при загрузке компонента
-  }, []); // пустой массив зависимостей для выполнения один раз после перезагрузки
+    dispatch(getUsers(page));
+  }, []);
 
 
   useEffect(() => {
@@ -42,18 +42,12 @@ const UsersTable = () => {
       setPage(prevPage => prevPage + 1);
       setIsFetching(false);
     });
-  }, [isFetching]);
+  }, [isFetching, page, dispatch]);
 
-
-
-
-  if (!users) {
-    return <div>Loading...</div>;
-  }
 
   return (
-    <div className="users-table__container" ref={containerRef}>
-      <table className="users-table">
+    <div className="users-table__container" >
+      <table className="users-table" ref={containerRef}>
         <thead>
           <tr>
             <th>№</th>

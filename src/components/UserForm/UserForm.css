@@ -16,6 +16,11 @@
   /* margin-top: 33px; */
 }
 
+.user-form .form__button:disabled {
+  background: linear-gradient(135.30deg, rgb(153, 219, 248) 2.159%, rgb(161, 239, 237) 96.661%);
+  cursor    : default;
+}
+
 .user-form__checkbox {
   display        : flex;
   justify-content: center;
